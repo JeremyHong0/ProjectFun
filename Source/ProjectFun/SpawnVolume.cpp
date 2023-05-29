@@ -3,6 +3,7 @@
 
 #include "SpawnVolume.h"
 
+#include "Enemy.h"
 #include "BaseGizmos/GizmoMath.h"
 #include "Components/BoxComponent.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -40,4 +41,18 @@ FVector ASpawnVolume::GetSpawnPoint()
 	FVector Point = UKismetMathLibrary::RandomPointInBoundingBox(Origin, Extent);
 
 	return Point;
+}
+
+void ASpawnVolume::SpawnPawn_Implementation(UClass* ToSpawn, const FVector& Location)
+{
+	if(ToSpawn)
+	{
+		UWorld* World = GetWorld();
+		FActorSpawnParameters SpawnParameters;
+		
+		if(World)
+		{
+			AEnemy* EnemySpawned = World->SpawnActor<AEnemy>(ToSpawn, Location, FRotator(0.f), SpawnParameters);
+		}
+	}
 }
