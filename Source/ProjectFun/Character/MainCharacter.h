@@ -6,14 +6,14 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
-UCLASS()
-class PROJECTFUN_API AMainCharacter : public ACharacter
+UCLASS(Config=Game)
+class AMainCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this character's properties
-	AMainCharacter();
+	AMainCharacter(const FObjectInitializer& ObjectInitializer);
 
 	/** Camera boom positioning the camera behind the player */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -30,8 +30,12 @@ public:
 	float BaseTurnRate;
 
 protected:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category=Movement)
+	class UCustomCharacterMovementComponent* CustomCharacterMovementComponent;
+	
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+
 
 public:	
 	// Called every frame
@@ -59,4 +63,6 @@ public:
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }
 	
+	FCollisionQueryParams GetIgnoreCharacterParams() const;
+
 };
