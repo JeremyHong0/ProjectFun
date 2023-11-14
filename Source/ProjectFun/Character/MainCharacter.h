@@ -36,7 +36,6 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -59,6 +58,8 @@ public:
 	 * @param Rate This is a normalized rate, i.e. 1.0 means 100% of desired look up/down rate
 	 */
 	void LookUpRate(float Rate);
+
+	FORCEINLINE UCustomCharacterMovementComponent* GetCustomMovementComponent() const { return CustomCharacterMovementComponent; } 
 
 	FORCEINLINE class USpringArmComponent* GetCameraBoom() const { return CameraBoom; }
 	FORCEINLINE class UCameraComponent* GetFollowCamera() const { return FollowCamera; }

@@ -28,6 +28,15 @@ public:
 	bool bIsInAir;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Movement)
+	float HorizontalVelocity;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Movement)
+	float VerticalVelocity;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Movement)
+	bool bIsClimbing;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Movement)
 	class APawn* Pawn;
 	
 };
